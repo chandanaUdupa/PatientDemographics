@@ -1,0 +1,14 @@
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\obj\Debug\PatientDemo.BusinessObject.csproj.CoreCompileInputs.cache
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\PatientDemo.mdf
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\PatientDemo_log.ldf
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\PatientDemo.BusinessObject.dll.config
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\PatientDemo.BusinessObject.dll
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\PatientDemo.BusinessObject.pdb
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\EntityFramework.dll
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\EntityFramework.xml
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\obj\Debug\PatientDemo.BusinessObject.csproj.CopyComplete
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\obj\Debug\PatientDemo.BusinessObject.dll
+c:\users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\obj\Debug\PatientDemo.BusinessObject.pdb
+C:\Users\cudupa\Source\Repos\PatientDemo\PatientDemo.BusinessObject\obj\Debug\PatientDemo.BusinessObject.csprojResolveAssemblyReference.cache

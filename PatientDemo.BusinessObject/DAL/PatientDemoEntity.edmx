@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PatientDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Forenames" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date of Birth" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientElectronicAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ElecType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telephone numbers" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PatientElectronicAddress_ToTable">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PatientElectronicAddress" Type="Self.PatientElectronicAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientElectronicAddress">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PatientDemoModelStoreContainer">
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientElectronicAddress" EntityType="Self.PatientElectronicAddress" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PatientElectronicAddress_ToTable" Association="Self.FK_PatientElectronicAddress_ToTable">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PatientElectronicAddress" EntitySet="PatientElectronicAddress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PatientDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Forenames" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date_of_Birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PatientElectronicAddresses" Relationship="Self.FK_PatientElectronicAddress_ToTable" FromRole="Patient" ToRole="PatientElectronicAddress" />
+        </EntityType>
+        <EntityType Name="PatientElectronicAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ElecType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone_numbers" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_PatientElectronicAddress_ToTable" FromRole="PatientElectronicAddress" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK_PatientElectronicAddress_ToTable">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PatientElectronicAddress" Type="Self.PatientElectronicAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientElectronicAddress">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PatientDemoEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="PatientElectronicAddresses" EntityType="Self.PatientElectronicAddress" />
+          <AssociationSet Name="FK_PatientElectronicAddress_ToTable" Association="Self.FK_PatientElectronicAddress_ToTable">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="PatientElectronicAddress" EntitySet="PatientElectronicAddresses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PatientDemoModelStoreContainer" CdmEntityContainer="PatientDemoEntities1">
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="PatientDemoModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Forenames" ColumnName="Forenames" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Date_of_Birth" ColumnName="Date of Birth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientElectronicAddresses">
+            <EntityTypeMapping TypeName="PatientDemoModel.PatientElectronicAddress">
+              <MappingFragment StoreEntitySet="PatientElectronicAddress">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ElecType" ColumnName="ElecType" />
+                <ScalarProperty Name="Telephone_numbers" ColumnName="Telephone numbers" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
